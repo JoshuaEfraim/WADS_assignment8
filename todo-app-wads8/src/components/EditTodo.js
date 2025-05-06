@@ -10,7 +10,7 @@ function EditTodo({ open, onClose, toEditTitle, toEditDescription, id }) {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/todos/${id}`, {
+      await axios.patch(`http://localhost:5000/service/todo/update_todo/${id}`, {
         todo_name: title,
         todo_desc: description,
         todo_status: "incomplete", // or whatever status you use

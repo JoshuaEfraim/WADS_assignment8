@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
@@ -16,7 +14,7 @@ function Login() {
   const loginUser = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/user/signin", {
+      const res = await axios.post("http://localhost:5000/service/user/signin", {
         email,
         password,
       }, { withCredentials: true }); // this sends cookies

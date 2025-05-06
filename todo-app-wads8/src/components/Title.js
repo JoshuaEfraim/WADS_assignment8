@@ -8,10 +8,15 @@ import { useNavigate } from "react-router-dom";
 function Title() {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const navigate = useNavigate(); // Get navigation function
+  const navigate = useNavigate();
+
+  const logout = (navigate) => {
+    localStorage.removeItem("token");
+    navigate("/"); // redirect to login
+  };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/todos")
+    axios.get("http://localhost:5000/service/todo/get_all")
       .then((res) => {
         const todos = res.data.map(todo => ({
           id: todo._id,
@@ -25,7 +30,6 @@ function Title() {
       })
       .catch((err) => console.error(err));
   }, []);
-  
 
   return (
     <div className="title">

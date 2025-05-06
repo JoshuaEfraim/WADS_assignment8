@@ -12,33 +12,17 @@ function TodoList({ id, title, description, completed }) {
     setOpen({ edit: false, view: false });
   };
 
-  /* function to update document in firestore */
-  const handleCheckedChange = async () => {
-    await axios.put(`http://localhost:5000/api/todos/${id}`, {
-      todo_name: title,
-      todo_desc: description,
-      todo_status: !checked,
-    });
-    setChecked(!checked);
-    
-  }
+
 
   /* function to delete a document from firstore */
   const handleDelete = async () => { 
-    await axios.delete(`http://localhost:5000/api/todos/${id}`);
+    await axios.delete(`http://localhost:5000/service/todo/delete_todo/${id}`);
   }
   
   return (
     <div className={`todoList ${checked && "todoList--borderColor"}`}>
       <div>
-        <input
-          id={`checkbox-${id}`}
-          className='checkbox-custom'
-          name="checkbox"
-          checked={checked}
-          onChange={handleCheckedChange}
-          type="checkbox"
-        />
+       
         <label
           htmlFor={`checkbox-${id}`}
           className="checkbox-custom-label"
